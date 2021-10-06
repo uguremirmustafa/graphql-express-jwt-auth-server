@@ -15,6 +15,8 @@ import cors from 'cors';
 const port = process.env.PORT || 4000;
 
 (async () => {
+  await createConnection();
+
   const app = express();
   app.use(
     cors({
@@ -52,8 +54,6 @@ const port = process.env.PORT || 4000;
     return res.send({ ok: true, accessToken: createAccessToken(user) });
   });
 
-  await createConnection();
-  // User.delete({});
   const apolloServer = new ApolloServer({
     schema: await buildSchema({ resolvers: [UserResolver] }),
     context: ({ req, res }) => ({ req, res }), // this is for getting the req and res objects in apollo resolvers

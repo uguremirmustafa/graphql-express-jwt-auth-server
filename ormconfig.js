@@ -1,5 +1,6 @@
 const isProd = process.env.NODE_ENV === 'production';
 const rootDir = isProd ? 'dist' : 'src';
+
 module.exports = {
   type: 'postgres',
   url: isProd ? process.env.DATABASE_URL : 'postgres://postgres:postgres@localhost:5432/test',
