@@ -24,5 +24,9 @@
     "baseUrl": "."
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts"]
+  "include": ["./src/**/*.ts"],
+  "typeRoots": [
+    "./src/CustomContext", // this is where you define your types
+    "./node_modules/@types" //this where npm packages containing types are located
+  ]
 }

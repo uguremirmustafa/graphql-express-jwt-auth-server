@@ -49,15 +49,6 @@ const port = process.env.PORT || 4000;
         (0, sendRefreshToken_1.sendRefreshToken)(res, (0, auth_1.createRefreshToken)(user));
         return res.send({ ok: true, accessToken: (0, auth_1.createAccessToken)(user) });
     });
-    const options = await (0, typeorm_1.getConnectionOptions)();
-    Object.assign(options, {
-        url: process.env.DATABASE_URL,
-        extra: {
-            ssl: {
-                rejectUnauthorized: false,
-            },
-        },
-    });
     await (0, typeorm_1.createConnection)();
     const apolloServer = new apollo_server_express_1.ApolloServer({
         schema: await (0, type_graphql_1.buildSchema)({ resolvers: [UserResolvers_1.UserResolver] }),
