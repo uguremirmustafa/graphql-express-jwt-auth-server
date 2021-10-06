@@ -12,6 +12,7 @@ import { User } from './entity/User';
 import { createAccessToken, createRefreshToken } from './utils/auth';
 import { sendRefreshToken } from './utils/sendRefreshToken';
 import cors from 'cors';
+import { isProd } from './utils/constants';
 const port = process.env.PORT || 4000;
 
 (async () => {
@@ -21,7 +22,7 @@ const port = process.env.PORT || 4000;
   app.use(
     cors({
       credentials: true,
-      origin: process.env.CLIENT_BASE_URL,
+      origin: isProd ? process.env.CLIENT_BASE_URL : 'http://localhost:3000',
     })
   );
   app.use(cookieParser());
