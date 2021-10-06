@@ -5,7 +5,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
 import { buildSchema } from 'type-graphql';
 import { UserResolver } from './UserResolvers';
-import { createConnection } from 'typeorm';
+import { createConnection, getConnectionOptions } from 'typeorm';
 import cookieParser from 'cookie-parser';
 import { verify } from 'jsonwebtoken';
 import { User } from './entity/User';
@@ -51,7 +51,15 @@ const port = process.env.PORT || 4000;
     sendRefreshToken(res, createRefreshToken(user));
     return res.send({ ok: true, accessToken: createAccessToken(user) });
   });
-
+  const options = await getConnectionOptions();
+  Object.assign(options, {
+    url: process.env.DATABASE_URL,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
+  });
   await createConnection();
   // User.delete({});
   const apolloServer = new ApolloServer({
