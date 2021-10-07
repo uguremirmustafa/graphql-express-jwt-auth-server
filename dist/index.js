@@ -26,13 +26,14 @@ const User_1 = require("./entity/User");
 const auth_1 = require("./utils/auth");
 const sendRefreshToken_1 = require("./utils/sendRefreshToken");
 const cors_1 = __importDefault(require("cors"));
+const constants_1 = require("./utils/constants");
 const port = process.env.PORT || 4000;
 (() => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, typeorm_1.createConnection)();
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)({
         credentials: true,
-        origin: process.env.CLIENT_BASE_URL,
+        origin: constants_1.isProd ? process.env.CLIENT_BASE_URL : 'http://localhost:3000',
     }));
     app.use((0, cookie_parser_1.default)());
     app.post('/refresh_token', (req, res) => __awaiter(void 0, void 0, void 0, function* () {

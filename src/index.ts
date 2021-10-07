@@ -13,6 +13,10 @@ import { createAccessToken, createRefreshToken } from './utils/auth';
 import { sendRefreshToken } from './utils/sendRefreshToken';
 import cors from 'cors';
 import { isProd } from './utils/constants';
+import Redis from 'ioredis';
+
+export const redis = new Redis();
+
 const port = process.env.PORT || 4000;
 
 (async () => {

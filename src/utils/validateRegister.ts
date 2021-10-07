@@ -18,7 +18,7 @@ export const validateRegister = (options: CredientialsInput) => {
     return [
       {
         field: 'username',
-        message: 'kullanici adi en az 4 karakterden olusmali',
+        message: 'kullanici adi en az 5 karakterden olusmali',
       },
     ];
   }

@@ -21,6 +21,7 @@ import { validateRegister } from './utils/validateRegister';
 import { CredientialsInput } from './utils/CredientialsInput';
 import { checkUserType } from './utils/checkUserType';
 import { verify } from 'jsonwebtoken';
+import { rateLimit } from './middlewares/rateLimit';
 
 // ObjectType used for returning values
 @ObjectType()
@@ -138,6 +139,7 @@ export class UserResolver {
   }
 
   @Mutation(() => LoginResponse)
+  @UseMiddleware(rateLimit())
   async login(
     @Arg('email', () => String) email: string,
     @Arg('password', () => String) password: string,
