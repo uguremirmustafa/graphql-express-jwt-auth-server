@@ -32,11 +32,11 @@ class FieldError {
   message: string;
 }
 @ObjectType()
-class LoginResponse {
+export class LoginResponse {
   @Field(() => [FieldError], { nullable: true })
   errors?: FieldError[];
 
-  @Field(() => User)
+  @Field(() => User, { nullable: true })
   user?: User;
 
   @Field(() => String, { nullable: true })
@@ -53,15 +53,10 @@ class UserResponse {
 
 @Resolver(User)
 export class UserResolver {
-  @Query(() => [User])
-  users() {
+  @Query(() => [User], { nullable: true })
+  @UseMiddleware(isAuth) // sadece authenticated kullanicilar kullanici listesini alabilir
+  async users() {
     return User.find({});
-  }
-
-  @Query(() => String)
-  @UseMiddleware(isAuth)
-  hello(@Ctx() { payload }: CustomContext) {
-    return `hey your user id is ${payload?.userId}`;
   }
 
   @Query(() => User, { nullable: true })
@@ -80,6 +75,7 @@ export class UserResolver {
     }
   }
 
+  // tüm kullanıcı refresh tokenlarını destroy et, bütün oturumları sonlandır.
   @Mutation(() => Boolean)
   async revokeRefreshTokensForUser(@Arg('userId', () => Int) userId: number) {
     await getConnection().getRepository(User).increment({ id: userId }, 'tokenVersion', 1);

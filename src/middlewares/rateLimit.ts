@@ -10,11 +10,16 @@ export const rateLimit: (limit?: number) => MiddlewareFn<CustomContext> =
     const current = await redis.incr(key);
 
     if (current > limit) {
-      throw new Error(
-        '10 saniye icinde birden fazla giris denemesi yapildi, 90 saniye bekleyiniz.'
-      );
+      return {
+        errors: [
+          {
+            field: 'password',
+            message: '10 saniye icinde birden fazla giris denemesi yapildi, 10 saniye bekleyiniz.',
+          },
+        ],
+      };
     } else if (current === 1) {
-      await redis.expire(key, 90);
+      await redis.expire(key, 10);
     }
 
     return next();
