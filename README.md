@@ -28,17 +28,15 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<a href="https://github.com/uguremirmustafa/express-graphql-jwt-auth">You can find the client code here</a>
 <p align="center">
   <a href="https://github.com/uguremirmustafa/graphql-express-jwt-auth-server">
-    <img src="./screenshots/logo.png" alt="Logo" width="80" height="80">
+    <img src="./screenshots/graphql.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">graphql-express-jwt-auth-server</h3>
 
   <p align="center">
     Auth server created with GraphQL and Express using JWT.
-
     <br />
     <a href="https://github.com/uguremirmustafa/graphql-express-jwt-auth-server"><strong>Explore the docs »</strong></a>
     <br />
@@ -48,10 +46,10 @@
     <a href="https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/issues">Report Bug</a>
     ·
     <a href="https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/issues">Request Feature</a>
-
   </p>
 </p>
 <a href="https://github.com/uguremirmustafa/express-graphql-jwt-auth">CLIENT CODE WITH REACT IS HERE</a>
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
@@ -82,7 +80,7 @@
 
 ## About The Project
 
-![graphql-express-jwt-auth-server Home Screen Shot](/screenshots/home.png)
+![graphql-express-jwt-auth-server Home Screen Shot](/screenshots/graphql.png)
 
 graphql-express-jwt-auth-server is built as a boilerplate code for starting graphql applications faster.
 
