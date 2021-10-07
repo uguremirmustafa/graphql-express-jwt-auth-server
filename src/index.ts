@@ -63,6 +63,7 @@ const port = process.env.PORT || 4000;
     schema: await buildSchema({ resolvers: [UserResolver] }),
     context: ({ req, res }) => ({ req, res }), // this is for getting the req and res objects in apollo resolvers
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+    introspection: true,
   });
   await apolloServer.start();
   apolloServer.applyMiddleware({

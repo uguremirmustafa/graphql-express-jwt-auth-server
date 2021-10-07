@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "0.0.1",
+  "homepage": ".",
   "description": "Authentication system with GraphQL, Express and JWT for my job application quiz.",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
