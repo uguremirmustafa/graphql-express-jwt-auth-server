@@ -67,7 +67,10 @@ const port = process.env.PORT || 4000;
   await apolloServer.start();
   apolloServer.applyMiddleware({
     app,
-    cors: false,
+    cors: {
+      credentials: true,
+      origin: isProd ? process.env.CLIENT_BASE_URL : 'http://localhost:3000',
+    },
   });
   app.listen(port, () => console.log(`server listening on ${port}`));
 })();
