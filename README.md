@@ -7,7 +7,7 @@
 ***
 ***
 *** To avoid retyping too much info. Do a search and replace for the following:
-*** uguremirmustafa, prepokul-next, uguremirmustafa, uguremirmustafa@gmail.com, Prepokul, Blog and business website for a pre-school organisation.
+*** uguremirmustafa, graphql-express-jwt-auth-server, uguremirmustafa, uguremirmustafa@gmail.com, graphql-express-jwt-auth-server, Auth server created with GraphQL and Express using JWT.
 -->
 
 <!-- PROJECT SHIELDS -->
@@ -28,27 +28,30 @@
 
 <!-- PROJECT LOGO -->
 <br />
+<a href="https://github.com/uguremirmustafa/express-graphql-jwt-auth">You can find the client code here</a>
 <p align="center">
-  <a href="https://github.com/uguremirmustafa/prepokul-next">
+  <a href="https://github.com/uguremirmustafa/graphql-express-jwt-auth-server">
     <img src="./screenshots/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Prepokul</h3>
+  <h3 align="center">graphql-express-jwt-auth-server</h3>
 
   <p align="center">
-    Blog and business website for a pre-school organisation.
+    Auth server created with GraphQL and Express using JWT.
+
     <br />
-    <a href="https://github.com/uguremirmustafa/prepokul-next"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/uguremirmustafa/graphql-express-jwt-auth-server"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/uguremirmustafa/prepokul-next">View Demo</a>
+    <a href="https://github.com/uguremirmustafa/graphql-express-jwt-auth-server">View Demo</a>
     ·
-    <a href="https://github.com/uguremirmustafa/prepokul-next/issues">Report Bug</a>
+    <a href="https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/issues">Report Bug</a>
     ·
-    <a href="https://github.com/uguremirmustafa/prepokul-next/issues">Request Feature</a>
+    <a href="https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/issues">Request Feature</a>
+
   </p>
 </p>
-
+<a href="https://github.com/uguremirmustafa/express-graphql-jwt-auth">CLIENT CODE WITH REACT IS HERE</a>
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
@@ -79,16 +82,18 @@
 
 ## About The Project
 
-![Prepokul Home Screen Shot](/screenshots/home.png)
+![graphql-express-jwt-auth-server Home Screen Shot](/screenshots/home.png)
 
-Prepokul is built for helping a pre-school organisation. It is mainly a blog and portfolio website where the owner can control all the content from a CMS(content-management-system). All blog posts are generated at build time, so it is SEO friendly.
+graphql-express-jwt-auth-server is built as a boilerplate code for starting graphql applications faster.
 
 ### Built With
 
-- [NextJS](https://nextjs.org/)
-- [SanityIO](https://www.sanity.io/)
-- [SASS](https://sass-lang.com/)
-- [Auth0](https://auth0.com/)
+- [Graphql](https://graphql.org/)
+- [apollo-server-express](https://www.npmjs.com/package/apollo-server-express)
+- [jwt](https://jwt.io)
+- [ioredis](https://github.com/luin/ioredis)
+- [typeorm](https://typeorm.io/#/)
+- [type-graphql](https://typegraphql.com/)
 
 <!-- GETTING STARTED -->
 
@@ -112,13 +117,13 @@ I prefer yarn, it is a personal choice.
   npm install yarn -g
   ```
 
-For the data, you will need a Sanity project. Go and create one. You can find the my schema files for this project [here.](https://github.com/uguremirmustafa/prepokul-next/schemas)
+As a database, I use postgresql. You can install postgres on your computer or you can create a docker instance with offical postgres image from docker hub. Remember your credientials and put them in `ormconfig.js` file after cloning the repo.
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/uguremirmustafa/prepokul-next.git
+   git clone https://github.com/uguremirmustafa/graphql-express-jwt-auth-server.git
    ```
 2. Install NPM packages
    ```sh
@@ -126,9 +131,17 @@ For the data, you will need a Sanity project. Go and create one. You can find th
    # OR
    npm install
    ```
-3. Move .env.example to .env.local and fill in the keys
+3. Move .env.example to .env and fill in the keys
+
    ```sh
-   mv .env.example .env.local
+   mv .env.example .env
+   ```
+
+4. Start the server and head to [http://localhost:4000/graphql](http://localhost:4000/graphql)
+   ```sh
+   yarn dev
+   # OR
+   npm run dev
    ```
 
 <!-- USAGE EXAMPLES -->
@@ -137,27 +150,15 @@ For the data, you will need a Sanity project. Go and create one. You can find th
 
 You can find some screenshots of the project.
 
-### Hoverable dropdown menu
+### Graphql Playground
 
-![navbar](/screenshots/navbar.png)
-
-### Mosaic style grid layout
-
-![mosaic layout](/screenshots/mosaic.png)
-
-### Downloadable content with authorization
-
-![downloadable content](/screenshots/downloadable.png)
-
-### Pagination with query parameters
-
-![pagination](/screenshots/pagination.png)
+![graphql](/screenshots/graphql.png)
 
 <!-- ROADMAP -->
 
 ## Roadmap
 
-See the [open issues](https://github.com/uguremirmustafa/prepokul-next/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 
@@ -183,28 +184,27 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Uğur Emirmustafa - [@uguremirmustafa](https://twitter.com/uguremirmustafa) - uguremirmustafa@gmail.com
 
-Project Link: [https://github.com/uguremirmustafa/prepokul-next](https://github.com/uguremirmustafa/prepokul-next)
+Project Link: [https://github.com/uguremirmustafa/graphql-express-jwt-auth-server](https://github.com/uguremirmustafa/graphql-express-jwt-auth-server)
 
 <!-- ACKNOWLEDGEMENTS -->
 
 ## Acknowledgements
 
-- [Framer Motion](https://www.framer.com/developers/)
-- [React Query](https://react-query.tanstack.com/)
-- [next-sanity-image](https://www.sanity.io/plugins/next-sanity-image)
+- [typeorm](https://typeorm.io/#/)
+- [type-graphql](https://typegraphql.com/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/uguremirmustafa/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/uguremirmustafa/prepokul-next/graphs/contributors
+[contributors-url]: https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/uguremirmustafa/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/uguremirmustafa/prepokul-next/network/members
+[forks-url]: https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/network/members
 [stars-shield]: https://img.shields.io/github/stars/uguremirmustafa/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/uguremirmustafa/prepokul-next/stargazers
+[stars-url]: https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/stargazers
 [issues-shield]: https://img.shields.io/github/issues/uguremirmustafa/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/uguremirmustafa/prepokul-next/issues
+[issues-url]: https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/issues
 [license-shield]: https://img.shields.io/github/license/uguremirmustafa/repo.svg?style=for-the-badge
-[license-url]: https://github.com/uguremirmustafa/prepokul-next/blob/master/LICENSE.txt
+[license-url]: https://github.com/uguremirmustafa/graphql-express-jwt-auth-server/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/uguremirmustafa

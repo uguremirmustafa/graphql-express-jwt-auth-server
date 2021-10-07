@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserResolver = void 0;
+exports.UserResolver = exports.LoginResponse = void 0;
 const type_graphql_1 = require("type-graphql");
 const User_1 = require("./entity/User");
 const bcryptjs_1 = require("bcryptjs");
@@ -33,6 +33,7 @@ const validateRegister_1 = require("./utils/validateRegister");
 const CredientialsInput_1 = require("./utils/CredientialsInput");
 const checkUserType_1 = require("./utils/checkUserType");
 const jsonwebtoken_1 = require("jsonwebtoken");
+const rateLimit_1 = require("./middlewares/rateLimit");
 let FieldError = class FieldError {
 };
 __decorate([
@@ -53,7 +54,7 @@ __decorate([
     __metadata("design:type", Array)
 ], LoginResponse.prototype, "errors", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => User_1.User),
+    (0, type_graphql_1.Field)(() => User_1.User, { nullable: true }),
     __metadata("design:type", User_1.User)
 ], LoginResponse.prototype, "user", void 0);
 __decorate([
@@ -63,6 +64,7 @@ __decorate([
 LoginResponse = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], LoginResponse);
+exports.LoginResponse = LoginResponse;
 let UserResponse = class UserResponse {
 };
 __decorate([
@@ -78,10 +80,9 @@ UserResponse = __decorate([
 ], UserResponse);
 let UserResolver = class UserResolver {
     users() {
-        return User_1.User.find({});
-    }
-    hello({ payload }) {
-        return `hey your user id is ${payload === null || payload === void 0 ? void 0 : payload.userId}`;
+        return __awaiter(this, void 0, void 0, function* () {
+            return User_1.User.find({});
+        });
     }
     me(context) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -197,19 +198,12 @@ let UserResolver = class UserResolver {
     }
 };
 __decorate([
-    (0, type_graphql_1.Query)(() => [User_1.User]),
+    (0, type_graphql_1.Query)(() => [User_1.User], { nullable: true }),
+    (0, type_graphql_1.UseMiddleware)(isAuth_1.isAuth),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "users", null);
-__decorate([
-    (0, type_graphql_1.Query)(() => String),
-    (0, type_graphql_1.UseMiddleware)(isAuth_1.isAuth),
-    __param(0, (0, type_graphql_1.Ctx)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], UserResolver.prototype, "hello", null);
 __decorate([
     (0, type_graphql_1.Query)(() => User_1.User, { nullable: true }),
     __param(0, (0, type_graphql_1.Ctx)()),
@@ -233,6 +227,7 @@ __decorate([
 ], UserResolver.prototype, "register", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => LoginResponse),
+    (0, type_graphql_1.UseMiddleware)((0, rateLimit_1.rateLimit)()),
     __param(0, (0, type_graphql_1.Arg)('email', () => String)),
     __param(1, (0, type_graphql_1.Arg)('password', () => String)),
     __param(2, (0, type_graphql_1.Ctx)()),

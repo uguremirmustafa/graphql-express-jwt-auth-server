@@ -5,7 +5,7 @@ const jsonwebtoken_1 = require("jsonwebtoken");
 const isAuth = ({ context }, next) => {
     const authorization = context.req.headers['authorization'];
     if (!authorization) {
-        throw new Error('yetkisiz kullanici');
+        throw new Error('Oturum açın!');
     }
     try {
         const token = authorization === null || authorization === void 0 ? void 0 : authorization.split(' ')[1];
@@ -14,7 +14,7 @@ const isAuth = ({ context }, next) => {
     }
     catch (error) {
         console.log(error);
-        throw new Error('yetkisiz kullanici');
+        throw new Error('Oturum açın!');
     }
     return next();
 };

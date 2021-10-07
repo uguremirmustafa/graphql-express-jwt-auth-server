@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.redis = void 0;
 require("dotenv/config");
 require("reflect-metadata");
 const express_1 = __importDefault(require("express"));
@@ -27,9 +28,13 @@ const auth_1 = require("./utils/auth");
 const sendRefreshToken_1 = require("./utils/sendRefreshToken");
 const cors_1 = __importDefault(require("cors"));
 const constants_1 = require("./utils/constants");
+const ioredis_1 = __importDefault(require("ioredis"));
+exports.redis = new ioredis_1.default(constants_1.isProd ? process.env.REDIS_URL : '');
 const port = process.env.PORT || 4000;
 (() => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, typeorm_1.createConnection)();
+    const client = process.env.CLIENT_BASE_URL;
+    console.log(client);
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)({
         credentials: true,
@@ -64,11 +69,15 @@ const port = process.env.PORT || 4000;
         schema: yield (0, type_graphql_1.buildSchema)({ resolvers: [UserResolvers_1.UserResolver] }),
         context: ({ req, res }) => ({ req, res }),
         plugins: [(0, apollo_server_core_1.ApolloServerPluginLandingPageGraphQLPlayground)()],
+        introspection: true,
     });
     yield apolloServer.start();
     apolloServer.applyMiddleware({
         app,
-        cors: false,
+        cors: {
+            credentials: true,
+            origin: constants_1.isProd ? process.env.CLIENT_BASE_URL : 'http://localhost:3000',
+        },
     });
     app.listen(port, () => console.log(`server listening on ${port}`));
 }))();
